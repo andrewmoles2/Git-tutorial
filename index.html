@@ -44,7 +44,7 @@ some_file.txt    some_other_file.txt
 <span class="hljs-meta">shell&gt;</span><span class="bash"> <span class="hljs-built_in">pwd</span></span>
 /home/dsl
 <span class="hljs-meta">shell&gt;</span><span class="bash"> git <span class="hljs-built_in">help</span></span>
-</code></pre><p>We will drop the <code>shell&gt;</code> prefix (a.k.a. shell prompt) in the future examples so that they are easy to copy and paste to your actual shell. That said, we do encourage you to type out the commands anyway!</p><h2 id="Installation"><a class="anchor hidden-xs" href="#Installation" title="Installation"><span class="octicon octicon-link"></span></a>Installation</h2><p>For Windows, use the appropriate version <a href="http://git-scm.com/download/win" target="_blank">here</a> (if you’re not sure, choose the “<strong>64-bit Git for Windows setup</strong>”) and pick “Bash” during the installation. <code>Installation video?</code></p><p>For MacOS, go <a href="http://git-scm.com/download/mac" target="_blank">here</a> and use either the binary installer, or the Homebrew distribution if you have that installed. Homebrew is a package manager for MacOS, enabling you to install and maintain programs such as Python securely, easily and with a single command.</p><p>On Linux, you most likely already have Git installed! If not, install it with your stock package manager.</p><h2 id="Using-the-command-line"><a class="anchor hidden-xs" href="#Using-the-command-line" title="Using-the-command-line"><span class="octicon octicon-link"></span></a>Using the command line</h2><p>The command line is an interface that processes commands to your computer through text instead of using your mouse. The Git for Windows will come with an implementation of Bash, the classic Linux shell that is most standard, and included in MacOS.</p><p>Opening the command line</p><ul>
+</code></pre><p>We will drop the <code>shell&gt;</code> prefix (a.k.a. shell prompt) in the future examples so that they are easy to copy and paste to your actual shell. That said, we do encourage you to type out the commands anyway!</p><h2 id="Installation"><a class="anchor hidden-xs" href="#Installation" title="Installation"><span class="octicon octicon-link"></span></a>Installation</h2><p>For Windows, use the appropriate version <a href="http://git-scm.com/download/win" target="_blank">here</a> (if you’re not sure, choose the “<strong>64-bit Git for Windows setup</strong>”) and pick “Bash” during the installation.</p><p>For MacOS, go <a href="http://git-scm.com/download/mac" target="_blank">here</a> and use either the binary installer, or the <a href="https://brew.sh/" target="_blank">Homebrew distribution</a> if you have that installed. Homebrew is a package manager for MacOS, enabling you to install and maintain programs such as Python securely, easily and with a single command.</p><p>On Linux, you most likely already have Git installed! If not, install it with your stock package manager.</p><h2 id="Using-the-command-line"><a class="anchor hidden-xs" href="#Using-the-command-line" title="Using-the-command-line"><span class="octicon octicon-link"></span></a>Using the command line</h2><p>The command line is an interface that processes commands to your computer through text instead of using your mouse. The Git for Windows will come with an implementation of Bash, the classic Linux shell that is most standard, and included in MacOS.</p><p>Opening the command line</p><ul>
 <li>Windows
 <ul>
 <li>Open start menu</li>
@@ -80,8 +80,8 @@ cat file.txt
 <span class="hljs-built_in">cd</span> ..
 <span class="hljs-built_in">pwd</span>
 </code></pre><p>We can run any command with a full path instead of going to directories. So for example</p><pre><code class="shell=bash hljs">head ~<span class="hljs-regexp">/somewhere/</span>file.txt
-</code></pre><div class="alert alert-warning">
-<p>Windows uses the back slash rather than the forward slash, so there we’d need something like <code>somewhere\file.txt</code>. <strong>What about Bash on Windows?</strong></p>
+</code></pre><div class="alert alert-success">
+<p>Windows uses the back slash rather than the forward slash, so there we’d need something like <code>somewhere\file.txt</code>. The rest of this tutorial doesn’t use absolute paths as such, so don’t worry too much about it!</p>
 </div><p>We will have a go at deleting our <code>file.txt</code> we made using the <code>rm</code>, which stands for “remove”. Note that removing files this way actually removes them (there is no trash folder). To be cautious, we can add the <code>-i</code> option which double checks we want to remove the file. Type <code>y</code> to confirm and <code>n</code> to ignore.</p><pre><code class="shell=bash hljs"><span class="hljs-selector-tag">rm</span> <span class="hljs-selector-tag">-i</span> <span class="hljs-selector-tag">file</span><span class="hljs-selector-class">.txt</span>
 </code></pre><p>To remove a directory (possibly with some files or other directories inside), we can add <code>-r</code> (“recursive”) option to <code>rm</code>.</p><pre><code class="shell=bash hljs"><span class="hljs-keyword">mkdir</span> folder-to-<span class="hljs-keyword">delete</span>
 rm -ri folder-to-<span class="hljs-keyword">delete</span>
@@ -551,11 +551,8 @@ echo dwa <span class="hljs-meta">&gt;&gt; </span>two.txt
 echo due <span class="hljs-meta">&gt;&gt; </span>two.txt
 
 git add --all
-git commit -m \ 
-    <span class="hljs-string">"Add Polish and Italian translations to 'two'"</span>
-</code></pre><div class="alert alert-success">
-<p>The backslash, <code>\</code>, simply allows us to write the command in a new line, without triggering execution with pressing enter. Shorter lines are usually easier to read, especially in small terminal windows!</p>
-</div><p>You can now try to merge your two branches (main and capitalize). Upon running</p><pre><code class="shell=bash hljs"><span class="hljs-attribute">git</span> merge capitalize
+git commit -m <span class="hljs-string">"Add Polish and Italian translations to 'two'"</span>
+</code></pre><p>You can now try to merge your two branches (main and capitalize). Upon running</p><pre><code class="shell=bash hljs"><span class="hljs-attribute">git</span> merge capitalize
 </code></pre><p>we get an error on the attempt to auto-merge the two branches. Git will automatically enter a special staging area called <code>main|MERGING</code>.</p><p>We can abort the merge with <code>git merge --abort</code> or we can try to resolve it.</p><p>You can view the conflits by viewing the two.txt file</p><pre><code class="shell=bash hljs"><span class="hljs-selector-tag">head</span> <span class="hljs-selector-tag">two</span><span class="hljs-selector-class">.txt</span>
 </code></pre><p>The conflicting file <code>two.txt</code> is temporarily changed to contain the options, as follows</p><pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 zwei
@@ -779,20 +776,17 @@ git log --oneline --graph
 </g>
 </g>
 </svg>
-</pre><div class="alert alert-warning">
-<p>(To be removed probably)</p>
-<p>This gets the job done, but we could have coordinated better and had a cleaner commit history. Sometimes making our strategy explicit is a good thing, as some resolutions might be very non-trivial.  But sometimes, saving this information risks cluttering the commit history with these merge messages. We could of course revert to before the conflict and redo the work sequentially with meaningful commits. But in practice, this is cumbersome: there is another way called <em>rebasing</em>.</p>
-<p>Let us first revert back to our conflict. To do this, we run <code>reflog</code>, the “Git’s time machine”</p>
-<br>
-<pre><code class="shell=bash hljs"><span class="hljs-attribute">git</span> reflog --<span class="hljs-literal">no</span>-abbrev
-</code></pre>
+</pre><div class="alert alert-info">
+<p><em>Exercise 4</em>. Continuing from the last exercise:</p>
 <ul>
-<li>Find commit hash and “recover” <code>cap</code> branch</li>
-<li>Reflog to appropriate HEAD</li>
-<li>Rebase</li>
+<li>Create a new branch called <code>uppercase</code></li>
+<li>Switch to the new branch</li>
+<li>Change the first word of the first paragraph in your text file to be all uppercase</li>
+<li>Commit changes in this branch</li>
+<li>Go back to <code>main</code></li>
+<li>Make the second word uppercase and commit to <code>main</code></li>
+<li>Try to merge <code>uppercase</code> to <code>main</code> and resolve any conflicts that might come up</li>
 </ul>
-</div><div class="alert alert-info">
-<p><em>Exercise 4</em>.</p>
 </div><h2 id="Doing-it-remotely"><a class="anchor hidden-xs" href="#Doing-it-remotely" title="Doing-it-remotely"><span class="octicon octicon-link"></span></a>Doing it remotely</h2><p>Remote collaboration is at the heart of Git. The project for which Git was originally developed, the Linux kernel, to this day uses the so-called patch workflow. This means that developers send to each other <em>patches</em> or <em>diffs</em> which are recipes of how the repository should be updated. Developers would maintain their own copies of the codebase.</p><p>Today, we fortunately have tools to make this much more efficient and beginner-friendly, and one of those tools is GitHub. It is an online platform on which users can store Git repositories and work together on an effectively centralized version. GitHub is based on pure Git methodology of a <em>remote</em> and all what you have learned in the previous section will be crucial, as even though a GitHub repository lives online, we will work on a copy of it offline and <em>push</em> our work as we see fit. A <em>remote</em> is a centralized version of a repository that may reside on the internet somewhere. See <a href="http://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes" target="_blank">Pro Git 2.5</a> for details.</p><p>So we need a remote server to act as a single source of truth. Big projects often have <em>mirrors</em>, read-only copies of the repository. For example, Linux kernel has <a href="https://github.com/torvalds/linux" target="_blank">one at GitHub</a>, but the actual development happens through patches over email. This is an old-school way of doing things – we will use GitHub for our centralized server.</p><p>First, go on <a href="https://github.com/" target="_blank">GitHub</a> and create an account. It is advised that you choose your username as something you like, as though it is possible to change it later, GitHub won’t store redirections to repositories referencing your old username. So, if you share <code>username/repository</code> but then change your name to <code>username1</code>, people visiting that shared link will get an error and will not get to <code>username1/repository</code>. Furthermore, GitHub makes it very easy to host a personal webpage under <code>username.github.io</code> but also does not redirect from old usernames.</p><p>Next we need to generate a Personal Access Token to authenticate our command line. To do so, follow <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank">this short guide</a>. It’s also good practice to give it some expiration date. Only scope you need for repositories is <code>repo</code>, so choose this one. <strong>You will only see it once, so make sure you copy it and save it somewhere!</strong></p><p>Now let us manually create a repository on GitHub.</p><ul>
 <li>Go to GitHub and log into your account</li>
 <li>Create a new repository and name it <code>some-repository</code></li>
@@ -801,16 +795,14 @@ git log --oneline --graph
 <li>Don’t add <code>README</code>, <code>.gitignore</code> and a license for now</li>
 </ul><p>GitHub will now give you some ideas on what to do next, and we go through it now. Go to your local repository you did all the work in.</p><div class="alert alert-success">
 <p>The name of the repository is an unknown concept to Git – it is simply the name of the directory which contains the repository. Nevertheless, in order to differentiate between different user’s repositories, it is necessary to specify it for GitHub.</p>
-</div><p>You can work with several remotes, but in this case we will only work with one. We add such a remote and customarily name it <code>origin</code>. Run the following and make sure to substitute <code>&lt;username&gt;</code> with your GitHub username. You can also just copy the exact line from the recommended GitHub instruction you just saw.</p><pre><code>git remote add origin \
-    https://github.com/&lt;username&gt;/some-repository.git
+</div><p>You can work with several remotes, but in this case we will only work with one. We add such a remote and customarily name it <code>origin</code>. Run the following and make sure to substitute <code>&lt;username&gt;</code> with your GitHub username. You can also just copy the exact line from the recommended GitHub instruction you just saw.</p><pre><code>git remote add origin https://github.com/&lt;username&gt;/some-repository.git
 </code></pre><p>GitHub will also recommend you to run a <code>git branch -M main</code>, which is there to force a rename of whatever branch you are on to <code>main</code>, which is necessary to work with GitHub. This is our default branch name already, so if you haven’t, just switch to it with <code>git checkout main</code> and you are good!</p><p>Now we need to <em>push</em> our changes to our new remote. We do so as follows. You will be prompted for username and password. For the password, use your Personal Access Token.</p><pre><code>git push -u origin main
 </code></pre><p>If we take a look at <code>git branch -va</code>, we will see a new <code>remotes/origin/main</code> branch, with same commit as the one on the <code>main</code> branch. If you refresh the GitHub page, you will now see the code, along with the commit history, and many other things! Note that we only pushed the <code>main</code> branch, so other branches are not accessible from the online interface. You often want to push other branches of course, as you might collaborate with other people within a parallel branch.</p><p>Okay, let’s now simulate a real situation of working with someone else. Open a new terminal, crate a new directory and clone the repository. Cloning a remote repository means downloading a copy of everything that’s on that remote. It’s a “fresh start” that is usually the first step to do if you want to contribute to someone’s work, or just download and play with their code.</p><pre><code>mkdir someone-else
 cd someone-else
-git clone \
-    https://github.com/&lt;username&gt;/some-repository.git
+git clone https://github.com/&lt;username&gt;/some-repository.git
 cd some-repository
 </code></pre><p>Substitute <code>&lt;username&gt;</code> with your GitHub username and make sure to end the repository URL with <code>.git</code>. Since your repository is private, you will again need to provide the Personal Access Token.</p><p>Now, make some changes and push. Go back to your old location and run <code>git fetch</code>. This will update the state of our local copy of the remote. If you run <code>git branch -va</code> you will see that now <code>main</code> is <code>[behind 1]</code> which means it is one commit behind compared to the remote. So we are now in the known situation of having to merge changes from some local branch to <code>main</code>.</p><p>Since there are no conflicts, we can simply merge the two branches with <code>git merge origin/main main</code>. This action is so popular, there is a special command <code>git pull</code> which will do exactly what we did: first fetch and then merge to <code>main</code>.</p><div class="alert alert-info">
-<p>Exercise 5. Using remotes:</p>
+<p><em>Exercise 5</em>. Using remotes:</p>
 <ul>
 <li>Make a repository on GitHub and link it to the local repository you’ve been using in the previous exercises</li>
 <li>Make an edit to your word count file to add more text</li>
@@ -818,9 +810,9 @@ cd some-repository
 <li>Go to GitHub to see your changes, and make some edits to the file in GitHub</li>
 <li>Go back to the command line and pull the changes you made from GitHub</li>
 </ul>
-</div><h2 id="The-end"><a class="anchor hidden-xs" href="#The-end" title="The-end"><span class="octicon octicon-link"></span></a>The end</h2><p>You should now have a basic competency on how to use Git and GitHub. Of course, there are many problems one can encounter on a larger scale, such as complex merge conflicts. Two pull requests that change the same file differently could be submitted at the same time, and someone has to decide how to actually apply the changes to the repository. In professional software development, testing is a necessity and there are many ways to automate a set of test to run on every commit to the repository.</p><p>For more advanced techniques such as rebasing, conflict resolution or hooks (custom behavior on Git actions), see Pro Git book. Here are also some articles on how to organize open repositories and some examples of successful projects managed in Git.</p><p>Further reading</p><ul>
+</div><h2 id="The-end"><a class="anchor hidden-xs" href="#The-end" title="The-end"><span class="octicon octicon-link"></span></a>The end</h2><p>You should now have a basic competency on how to use Git and GitHub. Of course, there are many problems one can encounter on a larger scale, such as complex merge conflicts. Two pull requests that change the same file differently could be submitted at the same time, and someone has to decide how to actually apply the changes to the repository. In professional software development, testing is a necessity and there are many ways to automate a set of test to run on every commit to the repository.</p><p>For more advanced techniques such as rebasing, conflict resolution or hooks (custom behavior on Git actions), see Pro Git book. Here are also some articles on how to organize open repositories and some examples of successful projects managed in Git.</p><p>For further reading, check out the rest of the <a href="https://git-scm.com/book/en/v2" target="_blank">Pro Git</a> book (we only went through core parts of chapters 2 and 3). Other interesting resources are</p><ul>
 <li><a href="https://dangitgit.com/" target="_blank">Dangit, Git!</a></li>
-<li><a href="" target="_blank">Happy Git for R</a></li>
+<li><a href="https://happygitwithr.com/" target="_blank">Happy Git for R</a></li>
 <li><a href="https://github.com/k88hudson/git-flight-rules" target="_blank">Git Flight Rules</a></li>
 <li><a href="https://wildlyinaccurate.com/a-hackers-guide-to-git/" target="_blank">Hacker’s Guide to Git</a></li>
 <li><a href="https://blog.jakuba.net/git-command-overview-with-useful-flags-and-aliases/" target="_blank">Useful Flags and Aliases</a></li>
@@ -874,12 +866,12 @@ head -1q user{1..10}.txt
 <li><a href="#Merging" title="Merging">Merging</a></li>
 </ul>
 </li>
-<li class=""><a href="#Merge-conflicts" title="Merge conflicts">Merge conflicts</a></li>
-<li class=""><a href="#Doing-it-remotely" title="Doing it remotely">Doing it remotely</a></li>
-<li class=""><a href="#The-end" title="The end">The end</a></li>
-<li class=""><a href="#Appendix" title="Appendix">Appendix</a><ul class="nav">
-<li class=""><a href="#Aliasing-commands" title="Aliasing commands">Aliasing commands</a></li>
-<li class=""><a href="#Some-further-shell" title="Some further shell">Some further shell</a></li>
+<li><a href="#Merge-conflicts" title="Merge conflicts">Merge conflicts</a></li>
+<li><a href="#Doing-it-remotely" title="Doing it remotely">Doing it remotely</a></li>
+<li><a href="#The-end" title="The end">The end</a></li>
+<li><a href="#Appendix" title="Appendix">Appendix</a><ul class="nav">
+<li><a href="#Aliasing-commands" title="Aliasing commands">Aliasing commands</a></li>
+<li><a href="#Some-further-shell" title="Some further shell">Some further shell</a></li>
 </ul>
 </li>
 </ul>
@@ -892,23 +884,23 @@ head -1q user{1..10}.txt
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
 <li class=""><a href="#Git-tutorial-at-the-DSL" title="Git tutorial at the DSL">Git tutorial at the DSL</a><ul class="nav">
-<li class=""><a href="#What-is-Git" title="What is Git">What is Git</a></li>
-<li class=""><a href="#Interfaces" title="Interfaces">Interfaces</a></li>
-<li class=""><a href="#Installation" title="Installation">Installation</a></li>
-<li class=""><a href="#Using-the-command-line" title="Using the command line">Using the command line</a></li>
-<li class=""><a href="#Doing-it-locally" title="Doing it locally">Doing it locally</a><ul class="nav">
-<li class=""><a href="#Configuration" title="Configuration">Configuration</a></li>
-<li class=""><a href="#Staging-and-commits" title="Staging and commits">Staging and commits</a></li>
-<li class=""><a href="#Branching" title="Branching">Branching</a></li>
-<li class=""><a href="#Merging" title="Merging">Merging</a></li>
+<li><a href="#What-is-Git" title="What is Git">What is Git</a></li>
+<li><a href="#Interfaces" title="Interfaces">Interfaces</a></li>
+<li><a href="#Installation" title="Installation">Installation</a></li>
+<li><a href="#Using-the-command-line" title="Using the command line">Using the command line</a></li>
+<li><a href="#Doing-it-locally" title="Doing it locally">Doing it locally</a><ul class="nav">
+<li><a href="#Configuration" title="Configuration">Configuration</a></li>
+<li><a href="#Staging-and-commits" title="Staging and commits">Staging and commits</a></li>
+<li><a href="#Branching" title="Branching">Branching</a></li>
+<li><a href="#Merging" title="Merging">Merging</a></li>
 </ul>
 </li>
-<li class=""><a href="#Merge-conflicts" title="Merge conflicts">Merge conflicts</a></li>
-<li class=""><a href="#Doing-it-remotely" title="Doing it remotely">Doing it remotely</a></li>
-<li class=""><a href="#The-end" title="The end">The end</a></li>
-<li class=""><a href="#Appendix" title="Appendix">Appendix</a><ul class="nav">
-<li class=""><a href="#Aliasing-commands" title="Aliasing commands">Aliasing commands</a></li>
-<li class=""><a href="#Some-further-shell" title="Some further shell">Some further shell</a></li>
+<li><a href="#Merge-conflicts" title="Merge conflicts">Merge conflicts</a></li>
+<li><a href="#Doing-it-remotely" title="Doing it remotely">Doing it remotely</a></li>
+<li><a href="#The-end" title="The end">The end</a></li>
+<li><a href="#Appendix" title="Appendix">Appendix</a><ul class="nav">
+<li><a href="#Aliasing-commands" title="Aliasing commands">Aliasing commands</a></li>
+<li><a href="#Some-further-shell" title="Some further shell">Some further shell</a></li>
 </ul>
 </li>
 </ul>
